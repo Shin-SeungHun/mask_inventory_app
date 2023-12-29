@@ -25,11 +25,14 @@ class MaskDto {
 class Stores {
   String? addr;
   String? code;
+  @JsonKey(name: 'created_at')
   String? createdAt;
   num? lat;
   num? lng;
   String? name;
+  @JsonKey(name: 'remain_stat')
   String? remainStat;
+  @JsonKey(name: 'stock_at')
   String? stockAt;
   String? type;
 

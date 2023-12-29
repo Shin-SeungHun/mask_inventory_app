@@ -7,5 +7,6 @@ void main() {
     final MaskApi api = MaskApi();
     MaskDto dto = await api.getMaskResult();
     expect(dto, isNotNull);
+    expect(dto.stores, isNotNull);
   });
 }

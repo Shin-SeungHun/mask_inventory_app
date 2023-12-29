@@ -19,23 +19,23 @@ Map<String, dynamic> _$MaskDtoToJson(MaskDto instance) => <String, dynamic>{
 Stores _$StoresFromJson(Map<String, dynamic> json) => Stores(
       addr: json['addr'] as String?,
       code: json['code'] as String?,
-      createdAt: json['createdAt'] as String?,
+      createdAt: json['created_at'] as String?,
       lat: json['lat'] as num?,
       lng: json['lng'] as num?,
       name: json['name'] as String?,
-      remainStat: json['remainStat'] as String?,
-      stockAt: json['stockAt'] as String?,
+      remainStat: json['remain_stat'] as String?,
+      stockAt: json['stock_at'] as String?,
       type: json['type'] as String?,
     );
 
 Map<String, dynamic> _$StoresToJson(Stores instance) => <String, dynamic>{
       'addr': instance.addr,
       'code': instance.code,
-      'createdAt': instance.createdAt,
+      'created_at': instance.createdAt,
       'lat': instance.lat,
       'lng': instance.lng,
       'name': instance.name,
-      'remainStat': instance.remainStat,
-      'stockAt': instance.stockAt,
+      'remain_stat': instance.remainStat,
+      'stock_at': instance.stockAt,
       'type': instance.type,
     };

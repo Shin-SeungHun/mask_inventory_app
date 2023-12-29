@@ -10,7 +10,7 @@ extension DtoToModel on Stores {
       lat: lat ?? 0,
       lng: lng ?? 0,
       name: name ?? '',
-      remainStat: remainStat ?? '',
+      remainStat: remainStat ?? 'empty',
       stockAt: stockAt ?? '',
       type: type ?? '',
     );

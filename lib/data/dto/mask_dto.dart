@@ -1,33 +1,38 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'mask_dto.g.dart';
+
+@JsonSerializable()
 class MaskDto {
+  num? count;
+  List<Stores>? stores;
+
   MaskDto({
     this.count,
     this.stores,
   });
 
-  MaskDto.fromJson(dynamic json) {
-    count = json['count'];
-    if (json['stores'] != null) {
-      stores = [];
-      json['stores'].forEach((v) {
-        stores?.add(Stores.fromJson(v));
-      });
-    }
+  factory MaskDto.fromJson(dynamic json) {
+    return _$MaskDtoFromJson(json);
   }
 
-  num? count;
-  List<Stores>? stores;
-
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['count'] = count;
-    if (stores != null) {
-      map['stores'] = stores?.map((v) => v.toJson()).toList();
-    }
-    return map;
+    return _$MaskDtoToJson(this);
   }
 }
 
+@JsonSerializable()
 class Stores {
+  String? addr;
+  String? code;
+  String? createdAt;
+  num? lat;
+  num? lng;
+  String? name;
+  String? remainStat;
+  String? stockAt;
+  String? type;
+
   Stores({
     this.addr,
     this.code,
@@ -40,39 +45,11 @@ class Stores {
     this.type,
   });
 
-  Stores.fromJson(dynamic json) {
-    addr = json['addr'];
-    code = json['code'];
-    createdAt = json['created_at'];
-    lat = json['lat'];
-    lng = json['lng'];
-    name = json['name'];
-    remainStat = json['remain_stat'];
-    stockAt = json['stock_at'];
-    type = json['type'];
+  factory Stores.fromJson(dynamic json) {
+    return _$StoresFromJson(json);
   }
 
-  String? addr;
-  String? code;
-  String? createdAt;
-  num? lat;
-  num? lng;
-  String? name;
-  String? remainStat;
-  String? stockAt;
-  String? type;
-
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['addr'] = addr;
-    map['code'] = code;
-    map['created_at'] = createdAt;
-    map['lat'] = lat;
-    map['lng'] = lng;
-    map['name'] = name;
-    map['remain_stat'] = remainStat;
-    map['stock_at'] = stockAt;
-    map['type'] = type;
-    return map;
+    return _$StoresToJson(this);
   }
 }

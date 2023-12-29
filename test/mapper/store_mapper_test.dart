@@ -21,5 +21,6 @@ void main() {
 
     expect(store.addr, '서울특별시 강북구 솔매로 38 (미아동)');
     expect(store.name, '승약국');
+    expect(store.remainStat, 'plenty');
   });
 }

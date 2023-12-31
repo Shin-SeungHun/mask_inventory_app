@@ -1,40 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_inventory_app/viewmodel/store_model.dart';
 import 'package:provider/provider.dart';
 
 import '../data/model/store.dart';
-import '../data/repository/mask_store_repository.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  // List<Store> storeList = [];
-  // final MaskStoreRepository repository = MaskStoreRepository();
-  bool isLoading = false;
-
-  final storeModel = StoreModel();
-
-  @override
-  void initState() {
-    super.initState();
-    // maskStoreList();
-  }
-
-  // Future<void> maskStoreList() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   storeList = await repository.getStoreList();
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +14,7 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         leading: const FlutterLogo(),
         title: Text(
-          '마스크 재고 있는 곳 : ${storeModel.stores}곳',
+          '마스크 재고 있는 곳 : ${storeModel.stores.length}곳',
           style: const TextStyle(fontSize: 20),
         ),
         actions: [
@@ -55,14 +26,12 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body: Center(
-        child: isLoading
+        child: storeModel.isLoading == true
             ? loadingWidget()
             : ListView.builder(
                 itemCount: storeModel.stores.length,
                 itemBuilder: (BuildContext context, int index) {
-                  // print(storeList.toString());
                   final Store store = storeModel.stores[index];
-                  // print('재고 수량 : ${store.remainStat}');
 
                   return ListTile(
                     title: Text(store.name),

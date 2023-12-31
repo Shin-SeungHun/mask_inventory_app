@@ -8,7 +8,10 @@ class MaskStoreRepository implements StoreRepository {
   final MaskApi _api = MaskApi();
 
   @override
-  Future<List<Store>> getStoreList() async {
+  Future<List<Store>> getStoreList({
+    required double lat,
+    required double lng,
+  }) async {
     final MaskDto dto = await _api.getMaskResult();
 
     if (dto.stores == null) {

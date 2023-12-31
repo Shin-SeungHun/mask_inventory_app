@@ -1,6 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:mask_inventory_app/ui/main_screen.dart';
+import 'package:mask_inventory_app/ui/view/main_screen.dart';
 import 'package:mask_inventory_app/viewmodel/store_model.dart';
 
 void main() {

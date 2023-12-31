@@ -5,7 +5,7 @@ import '../data/model/store.dart';
 
 class StoreModel with ChangeNotifier {
   List<Store> stores = [];
-  bool isLoading =false;
+  bool isLoading = false;
   final MaskStoreRepository _repository = MaskStoreRepository();
 
   // StoreModel(){

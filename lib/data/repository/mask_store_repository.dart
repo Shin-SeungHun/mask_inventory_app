@@ -15,6 +15,12 @@ class MaskStoreRepository implements StoreRepository {
       return [];
     }
 
-    return dto.stores!.map((e) => e.toStore()).toList();
+    return dto.stores!
+        .where((e) =>
+            e.remainStat == 'plenty' ||
+            e.remainStat == 'some' ||
+            e.remainStat == 'few')
+        .map((e) => e.toStore())
+        .toList();
   }
 }

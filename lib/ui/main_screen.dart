@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_inventory_app/viewmodel/store_model.dart';
+import 'package:provider/provider.dart';
 
 import '../data/model/store.dart';
 import '../data/repository/mask_store_repository.dart';
@@ -11,44 +14,42 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Store> storeList = [];
-  final MaskStoreRepository repository = MaskStoreRepository();
+  // List<Store> storeList = [];
+  // final MaskStoreRepository repository = MaskStoreRepository();
   bool isLoading = false;
+
+  final storeModel = StoreModel();
 
   @override
   void initState() {
     super.initState();
-    maskStoreList();
+    // maskStoreList();
   }
 
-  Future<void> maskStoreList() async {
-    setState(() {
-      isLoading = true;
-    });
-    storeList = await repository.getStoreList();
-    setState(() {
-      isLoading = false;
-    });
-  }
+  // Future<void> maskStoreList() async {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+  //   storeList = await repository.getStoreList();
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final storeModel = Provider.of<StoreModel>(context);
     return Scaffold(
       appBar: AppBar(
         leading: const FlutterLogo(),
         title: Text(
-          '마스크 재고 있는 곳 : ${storeList.length}곳',
+          '마스크 재고 있는 곳 : ${storeModel.stores}곳',
           style: const TextStyle(fontSize: 20),
         ),
         actions: [
           IconButton(
               onPressed: () {
-                setState(() {
-                  storeList.clear();
-
-                  maskStoreList();
-                  print('새로고침');
-                });
+                storeModel.fetch();
               },
               icon: const Icon(Icons.refresh))
         ],
@@ -57,10 +58,10 @@ class _MainScreenState extends State<MainScreen> {
         child: isLoading
             ? loadingWidget()
             : ListView.builder(
-                itemCount: storeList.length,
+                itemCount: storeModel.stores.length,
                 itemBuilder: (BuildContext context, int index) {
                   // print(storeList.toString());
-                  final Store store = storeList[index];
+                  final Store store = storeModel.stores[index];
                   // print('재고 수량 : ${store.remainStat}');
 
                   return ListTile(

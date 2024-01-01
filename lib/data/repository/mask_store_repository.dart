@@ -25,7 +25,8 @@ class MaskStoreRepository implements StoreRepository {
     for (Stores storeData in dto.stores!) {
       final double distance = _distance.as(
         LengthUnit.Kilometer,
-        LatLng(storeData.lat?.toDouble() ?? 0.0, storeData.lng?.toDouble() ?? 0.0),
+        LatLng(
+            storeData.lat?.toDouble() ?? 0.0, storeData.lng?.toDouble() ?? 0.0),
         LatLng(lat, lng),
       );
 
@@ -38,6 +39,9 @@ class MaskStoreRepository implements StoreRepository {
       }
     }
 
-    return storeList;
+    return storeList
+      ..sort(
+        (a, b) => a.km.compareTo(b.km),
+      );
   }
 }

@@ -29,27 +29,38 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: storeModel.isLoading == true
             ? loadingWidget()
-            : ListView.builder(
-                itemCount: storeModel.stores.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final Store store = storeModel.stores[index];
+            : storeModel.stores.isEmpty
+                ? const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('반경 5km 이내에 재고가 있는 매장이 없습니다.'),
+                      Text('또는 인터넷이 연결되어 있는지 확인해 주세요')
+                    ],
+                  )
+                : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.builder(
+                      itemCount: storeModel.stores.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Store store = storeModel.stores[index];
 
-                  return ListTile(
-                    title: Text(store.name),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(store.addr),
-                        Text('${store.km}km'),
-                      ],
+                        return ListTile(
+                          title: Text(store.name),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(store.addr),
+                              Text('${store.km}km'),
+                            ],
+                          ),
+                          trailing: RemainStatListTile(store: store),
+                          onTap: () {
+                            _launchUrl(store.lat, store.lng);
+                          },
+                        );
+                      },
                     ),
-                    trailing: RemainStatListTile(store: store),
-                    onTap: () {
-                      _launchUrl(store.lat, store.lng);
-                    },
-                  );
-                },
-              ),
+                ),
       ),
     );
   }

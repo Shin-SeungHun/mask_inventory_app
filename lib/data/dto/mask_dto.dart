@@ -27,8 +27,8 @@ class Stores {
   String? code;
   @JsonKey(name: 'created_at')
   String? createdAt;
-  num? lat;
-  num? lng;
+  double? lat;
+  double? lng;
   String? name;
   @JsonKey(name: 'remain_stat')
   String? remainStat;

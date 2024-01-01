@@ -10,7 +10,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final storeModel = Provider.of<StoreModel>(context);
+    final StoreModel storeModel = context.watch();
     return Scaffold(
       appBar: AppBar(
         leading: const FlutterLogo(),
@@ -38,8 +38,8 @@ class MainScreen extends StatelessWidget {
                     ],
                   )
                 : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.builder(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
                       itemCount: storeModel.stores.length,
                       itemBuilder: (BuildContext context, int index) {
                         final Store store = storeModel.stores[index];
@@ -60,7 +60,7 @@ class MainScreen extends StatelessWidget {
                         );
                       },
                     ),
-                ),
+                  ),
       ),
     );
   }

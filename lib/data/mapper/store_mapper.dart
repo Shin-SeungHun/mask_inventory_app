@@ -13,6 +13,7 @@ extension DtoToModel on Stores {
       remainStat: remainStat ?? 'empty',
       stockAt: stockAt ?? '',
       type: type ?? '',
+      km: km.toString(),
     );
   }
 }

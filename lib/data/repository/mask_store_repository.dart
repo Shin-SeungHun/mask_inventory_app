@@ -3,9 +3,11 @@ import 'package:mask_inventory_app/data/dto/mask_dto.dart';
 import 'package:mask_inventory_app/data/mapper/store_mapper.dart';
 import 'package:mask_inventory_app/data/model/store.dart';
 import 'package:mask_inventory_app/data/repository/interface/store_repository.dart';
+import 'package:latlong2/latlong.dart';
 
 class MaskStoreRepository implements StoreRepository {
   final MaskApi _api = MaskApi();
+  final _distance = const Distance();
 
   @override
   Future<List<Store>> getStoreList({
@@ -18,12 +20,24 @@ class MaskStoreRepository implements StoreRepository {
       return [];
     }
 
-    return dto.stores!
-        .where((e) =>
-            e.remainStat == 'plenty' ||
-            e.remainStat == 'some' ||
-            e.remainStat == 'few')
-        .map((e) => e.toStore())
-        .toList();
+    final List<Store> storeList = [];
+
+    for (Stores storeData in dto.stores!) {
+      final double distance = _distance.as(
+        LengthUnit.Kilometer,
+        LatLng(storeData.lat?.toDouble() ?? 0.0, storeData.lng?.toDouble() ?? 0.0),
+        LatLng(lat, lng),
+      );
+
+      storeData.km = distance;
+
+      if (storeData.remainStat == 'plenty' ||
+          storeData.remainStat == 'some' ||
+          storeData.remainStat == 'few') {
+        storeList.add(storeData.toStore());
+      }
+    }
+
+    return storeList;
   }
 }

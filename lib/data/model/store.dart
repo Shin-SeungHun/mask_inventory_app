@@ -13,6 +13,8 @@ class Store {
   String stockAt;
   String type;
 
+  String km;
+
 //<editor-fold desc="Data Methods">
   Store({
     required this.addr,
@@ -24,6 +26,7 @@ class Store {
     required this.remainStat,
     required this.stockAt,
     required this.type,
+    required this.km,
   });
 
   @override
@@ -79,6 +82,7 @@ class Store {
       remainStat: remainStat ?? this.remainStat,
       stockAt: stockAt ?? this.stockAt,
       type: type ?? this.type,
+      km: km,
     );
   }
 
@@ -106,7 +110,7 @@ class Store {
       name: json['name'] as String,
       remainStat: json['remainStat'] as String,
       stockAt: json['stockAt'] as String,
-      type: json['type'] as String,
+      type: json['type'] as String, km: '',
     );
   }
 

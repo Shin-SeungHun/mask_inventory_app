@@ -35,6 +35,7 @@ class Stores {
   @JsonKey(name: 'stock_at')
   String? stockAt;
   String? type;
+  num? km;
 
   Stores({
     this.addr,
@@ -46,6 +47,7 @@ class Stores {
     this.remainStat,
     this.stockAt,
     this.type,
+    this.km
   });
 
   factory Stores.fromJson(dynamic json) {

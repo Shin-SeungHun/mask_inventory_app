@@ -26,6 +26,7 @@ Stores _$StoresFromJson(Map<String, dynamic> json) => Stores(
       remainStat: json['remain_stat'] as String?,
       stockAt: json['stock_at'] as String?,
       type: json['type'] as String?,
+      km: json['km'] as num?,
     );
 
 Map<String, dynamic> _$StoresToJson(Stores instance) => <String, dynamic>{
@@ -38,4 +39,5 @@ Map<String, dynamic> _$StoresToJson(Stores instance) => <String, dynamic>{
       'remain_stat': instance.remainStat,
       'stock_at': instance.stockAt,
       'type': instance.type,
+      'km': instance.km,
     };

@@ -9,11 +9,12 @@ class StoreModel with ChangeNotifier {
   List<Store> stores = [];
   bool isLoading = false;
   final MaskStoreRepository _repository = MaskStoreRepository();
-  final _locationRepository = LocationRepository();
+  final LocationRepository _locationRepository = LocationRepository();
 
-  // StoreModel(){
-  //   fetch();
-  // }
+  StoreModel() {
+    fetch();
+  }
+
   Future fetch() async {
     isLoading = true;
     notifyListeners();

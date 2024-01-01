@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_inventory_app/ui/widget/remain_stat_list_tile.dart';
 import 'package:mask_inventory_app/viewmodel/store_model.dart';
 import 'package:provider/provider.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../data/model/store.dart';
 
 class MainScreen extends StatelessWidget {
@@ -38,6 +38,9 @@ class MainScreen extends StatelessWidget {
                     title: Text(store.name),
                     subtitle: Text(store.addr),
                     trailing: RemainStatListTile(store: store),
+                    onTap: () {
+                      _launchUrl(store.lat, store.lng);
+                    },
                   );
                 },
               ),
@@ -59,5 +62,11 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-}
 
+  Future<void> _launchUrl(num lat, num lng) async {
+    final url = 'https://google.com/maps/search/?api=1&query=$lat,$lng';
+    if (!await launchUrl(Uri.parse(url))) {
+      throw Exception('Could not launch ${Uri.parse(url)}');
+    }
+  }
+}
